@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  postgres-1:
+    build: .
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=poc-sharding
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=poc-sharding
+    volumes:
+     - ./migrations/pg-1:/docker-entrypoint-initdb.d
+  postgres-2:
+    build: .
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=poc-sharding
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=poc-sharding
+    volumes:
+     - ./migrations/pg-2:/docker-entrypoint-initdb.d
+  postgres-3:
+    build: .
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=poc-sharding
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=poc-sharding
+    volumes:
+     - ./migrations/pg-3:/docker-entrypoint-initdb.d
